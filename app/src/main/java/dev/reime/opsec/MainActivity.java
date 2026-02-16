@@ -4,13 +4,17 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
-    private EditText user;
+    private AutoCompleteTextView user;
     private EditText section;
 
     @Override
@@ -21,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
         user = findViewById(R.id.textUsername);
         section = findViewById(R.id.textSection);
+
+        List<String> studentNames = UsernameSuggester.getStudentNames(this);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, studentNames);
+        user.setAdapter(adapter);
 
         user.addTextChangedListener(new TextWatcher() {
 
