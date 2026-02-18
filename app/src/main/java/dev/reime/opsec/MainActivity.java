@@ -1,5 +1,8 @@
 package dev.reime.opsec;
 
+import android.graphics.drawable.AnimatedImageDrawable;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,14 +21,26 @@ public class MainActivity extends AppCompatActivity {
     private AutoCompleteTextView user;
     private EditText section;
 
+    private RelativeLayout layout;
+    private Drawable bg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+
+        RelativeLayout layout = findViewById(R.id.bgMain);
+        Drawable bg = layout.getBackground();
+
         user = findViewById(R.id.textUsername);
         section = findViewById(R.id.textSection);
+
+        if (bg instanceof AnimatedVectorDrawable) {
+            AnimatedVectorDrawable avd = (AnimatedVectorDrawable) bg;
+            avd.start();
+        }
 
         List<String> studentNames = UsernameSuggester.getStudentNames(this);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, studentNames);

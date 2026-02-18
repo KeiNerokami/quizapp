@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="640dp"
+    android:viewportWidth="1"
+    android:viewportHeight="1">
+
+    <!-- Manually Flipped Horizontally (with slight overlap) -->
+    <group android:scaleX="1.005">
+        <!-- Bottom reflection (Flipped Path) -->
+        <path android:fillColor="#441e202c"
+            android:pathData="M1,0.7 C0.8,0.75 0.2,0.25 0,0.3 L0,1 L1,1 Z"/>
+        <!-- Drop shadow (Flipped Path) -->
+        <path android:fillColor="#ef1e202c"
+            android:pathData="M0,0.33 C0.22,0.28 0.78,0.72 1,0.67 L1,0 L0,0 Z"/>
+        <!-- Top reflection (Flipped Path) -->
+        <path android:fillColor="#441e202c"
+            android:pathData="M0,0.3 C0.2,0.25 0.8,0.75 1,0.7 L1,0 L0,0 Z"/>
+    </group>
+</vector>
