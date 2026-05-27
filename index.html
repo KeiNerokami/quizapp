@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>Quiz JSON Generator</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar__inner">
+            <div class="brand">
+                <span class="brand__mark" aria-hidden="true"></span>
+                <div>
+                    <h1>Quiz JSON Generator</h1>
+                    <p>Static editor for questions.json and answers.json</p>
+                </div>
+            </div>
+
+            <div class="toolbar" aria-label="Quiz controls">
+                <button class="button button--primary" id="addQuestionButton" type="button">Add Question</button>
+                <label class="button button--neutral file-button" for="questionsFile">questions.json</label>
+                <input class="visually-hidden" id="questionsFile" type="file" accept="application/json,.json">
+                <label class="button button--neutral file-button" for="answersFile">answers.json</label>
+                <input class="visually-hidden" id="answersFile" type="file" accept="application/json,.json">
+                <button class="button button--neutral" id="importButton" type="button">Import</button>
+                <button class="button button--primary" id="downloadButton" type="button">Download ZIP</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-shell">
+        <section class="panel" aria-labelledby="editorTitle">
+            <div class="panel__header">
+                <div>
+                    <p class="eyebrow">Quiz Assets</p>
+                    <h2 id="editorTitle">JSON Generator and Editor</h2>
+                </div>
+                <div class="counter" id="questionCounter" aria-live="polite">Questions: 0 / 100</div>
+            </div>
+
+            <div class="status" id="statusMessage" role="status" aria-live="polite"></div>
+
+            <div class="table-wrap" role="region" aria-label="Quiz entries" tabindex="0">
+                <table class="quiz-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Question</th>
+                            <th scope="col">
+                                <span class="th-inline">
+                                    Correct Answer
+                                    <span class="tooltip">
+                                        <button class="tooltip__trigger" type="button" aria-label="Correct answer storage note">?</button>
+                                        <span class="tooltip__bubble" role="tooltip">Correct answer must always stay at index 0. Do not randomize answers. Rei already implemented the answer shuffler inside the Android app.</span>
+                                    </span>
+                                </span>
+                            </th>
+                            <th scope="col">Option 2</th>
+                            <th scope="col">Option 3</th>
+                            <th scope="col">Option 4</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="quizTableBody"></tbody>
+                </table>
+            </div>
+
+            <p class="empty-state" id="emptyState">No questions yet. Add one or import existing JSON files.</p>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="src/script.js"></script>
+</body>
+</html>
